@@ -1,0 +1,40 @@
+.loginContainer {
+  width: 400px;
+  box-shadow: 0.1px 0.1px 2px black;
+  padding: 30px 20px;
+}
+.loginPageContainer {
+  height: 100vh;
+}
+
+.or-line {
+  width: 90%;
+  border-bottom: 1px solid;
+  text-align: center;
+  line-height: 0.1em;
+  margin: 10px 0px 20px 15px;
+}
+
+.or-line span {
+  background-color: white;
+  padding: 0 2%;
+}
+
+.login-alternative {
+  width: 90%;
+  height: 33px;
+  border-radius: 20px;
+  border: 1px solid;
+  margin-bottom: 15px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.login-alternative img {
+  width: 22px;
+  width: 22px;
+}
+
+.login-alternative h6 {
+  margin-left: 15px;
+}

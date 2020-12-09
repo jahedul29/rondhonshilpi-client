@@ -1,0 +1,10 @@
+.activationContainer {
+  width: 400px;
+  padding: 20px 10px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.activation {
+  height: 100vh;
+}
