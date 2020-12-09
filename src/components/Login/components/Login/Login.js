@@ -5,13 +5,16 @@ import Registration from "../Registration/Registration";
 import { useForm } from "react-hook-form";
 import apiClient from "../../../../coreServices/apiClient";
 import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../services/redux/loggedInUserActions";
 
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toHome, setToHome] = useState(false);
   const [authError, setAuthError] = useState(false);
   const [unknownError, setUnknownError] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  const dispatch = useDispatch();
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -31,16 +34,19 @@ const Login = () => {
         .then((response) => {
           if (response.status === 200) {
             setToHome(true);
-            setLoggedInUser(response.data.user);
+            dispatch(setUser({ ...response.data.user }));
+            sessionStorage.setItem(
+              "loggedInUser",
+              JSON.stringify({ ...response.data.user })
+            );
           }
         })
         .catch((error) => {
           if (error.response && error.response.status === 422) {
-            console.log(error.response);
-            // setAuthError(error.response.data.errors.message[0]);
+            setAuthError(error.response.data.errors.message[0]);
           } else {
             console.log(error.response);
-            // setUnknownError(error.response.data.message);
+            setUnknownError(error.response.data.message);
           }
         });
     });
@@ -62,8 +68,10 @@ const Login = () => {
 
       <div className="loginContainer">
         <h3 className="text-info mb-3">Login</h3>
-        {loggedInUser ? <h3>Welcome {loggedInUser.name}</h3> : null}
         {authError ? <p className="error text-center">{authError}</p> : null}
+        {unknownError ? (
+          <p className="error text-center">{unknownError}</p>
+        ) : null}
 
         <Form onSubmit={handleSubmit(onSubmit)} id="loginForm">
           <Form.Group>
