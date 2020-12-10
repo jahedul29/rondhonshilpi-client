@@ -11,6 +11,8 @@ const Home = () => {
   const dispatch = useDispatch();
   let history = useHistory();
 
+  console.log(loggedInUser);
+
   const logout = () => {
     apiClient.post("/logout").then((response) => {
       if (response.status === 204) {

@@ -1,7 +1,7 @@
 const { SET_USER } = require("./loggedInUserActionTypes");
 
 const initialState = {
-  loggedInUser: JSON.parse(sessionStorage.getItem("loggedInUser")) || {},
+  loggedInUser: JSON.parse(sessionStorage.getItem("loggedInUser")) || null,
 };
 
 const loggedInUserReducer = (state = initialState, action) => {

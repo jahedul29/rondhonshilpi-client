@@ -4,8 +4,8 @@ import "./Login.css";
 import Registration from "../Registration/Registration";
 import { useForm } from "react-hook-form";
 import apiClient from "../../../../coreServices/apiClient";
-import { Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../services/redux/loggedInUserActions";
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
   const [toHome, setToHome] = useState(false);
   const [authError, setAuthError] = useState(false);
   const [unknownError, setUnknownError] = useState(false);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -120,7 +121,12 @@ const Login = () => {
             Login
           </Button>
         </Form>
-        <p className="text-danger">Forgot password?</p>
+        <p
+          onClick={() => history.push("/forgetPassword")}
+          className="text-danger"
+        >
+          Forgot password?
+        </p>
         <div className="socialLogin">
           <h6 className="or-line">
             <span>Or</span>

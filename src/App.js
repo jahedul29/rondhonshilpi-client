@@ -4,6 +4,9 @@ import Login from "./components/Login/components/Login/Login";
 import Activation from "./components/Login/components/Activation/Activation";
 import { Provider } from "react-redux";
 import store from "./coreServices/redux/store";
+import ForgetPassword from "./components/Login/components/ForgetPassword/ForgetPassword";
+import EmailVerification from "./components/Login/components/EmailVerification/EmailVerification";
+import ResetPassword from "./components/Login/components/ResetPassword/ResetPassword";
 
 function App() {
   return (
@@ -18,6 +21,15 @@ function App() {
           </Route>
           <Route path="/activation">
             <Activation />
+          </Route>
+          <Route path="/emailVerification">
+            <EmailVerification />
+          </Route>
+          <Route path="/forgetPassword">
+            <ForgetPassword />
+          </Route>
+          <Route path="/resetPassword">
+            <ResetPassword />
           </Route>
         </Switch>
       </Router>
